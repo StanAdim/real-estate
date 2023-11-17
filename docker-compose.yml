@@ -1,0 +1,24 @@
+services:
+
+  realestate:
+    container_name: realestate
+    build: .
+    volumes:
+      - ./realestate:/var/www/html
+    ports:
+      - 9000:80
+  
+  mysql_db:
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: realestate
+    ports:
+    - 3366:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
